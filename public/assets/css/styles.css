@@ -1,0 +1,204 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    src: url('../fonts/Inter-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Inter-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    src: url('../fonts/Inter-Bold.ttf') format('truetype');
+}
+
+
+* {
+    --white: #ffffff;
+    --gray: #cdcdcd;
+    --gray-dark: #444444;
+    --black: #000000;
+
+    box-sizing: border-box;
+    font: 100% / 1.6 'Inter', Arial, Helvetica Neue, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--gray-dark);
+    margin: 0;
+    padding: 0;
+}
+
+.color-preview {
+    height: 100%;
+    width: 30px;
+}
+
+.header {
+    align-items: center;
+    background-color: var(--black);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    font-weight: 200;
+    justify-content: space-around;
+    line-height: 1.5;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+@media (min-width: 960px) {
+    .header {
+        flex-direction: row;
+    }
+}
+
+.header h1 {
+    font-size: 2rem;
+    padding-top: 1rem;
+}
+
+.header a {
+    color: var(--gray);
+}
+
+.header span {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.header span #color-selector,
+.header span #variations {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--gray);
+    border-radius: .25rem;
+    cursor: pointer;
+    display: block;
+    height: 2.4rem;
+    margin: 0 auto;
+    padding: .5rem;
+    width: 10rem;
+}
+
+.header span #variations {
+    font-size: 1rem;
+    height: 2.4rem;
+    margin-top: 0;
+}
+
+.palette-title {
+    text-align: center;
+}
+
+.color-palettes {
+    background: var(--gray-dark);
+    color: var(--white);
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 auto;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.color-palettes .palette-container {
+    margin-right: 1rem;
+    margin-top: 3rem;
+}
+
+.color-palettes .palette-container .code-container .color {
+    display: flex;
+    height: 9rem;
+}
+
+.color-palettes .palette-container .code-container .color .color-codes {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1rem;
+}
+
+.color-palettes .palette-container .code-container .color .color-codes div {
+    z-index: 2;
+}
+
+.color-palettes .palette-container .code-container .color .color-codes div div {
+    align-items: center;
+    border-radius: 1rem;
+    display: inline-flex;
+    flex-direction: row;
+    margin-right: 0.5rem;
+    padding: 0.3rem;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    width: 2rem;
+}
+
+.color-palettes .palette-container .code-container .color .color-codes .rgb,
+.color-palettes .palette-container .code-container .color .color-codes .hsl,
+.color-palettes .palette-container .code-container .color .color-codes .hex {
+    height: 2.4rem;
+}
+
+/* .color-palettes .palette-container .code-container .color .color-codes .rgb div:before,
+.color-palettes .palette-container .code-container .color .color-codes .hsl div:before {
+    color: var(--white);
+    font-size: 2.5rem;
+    font-weight: 700;
+    left: 50%;
+    opacity: 0.6;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.color-palettes .palette-container .code-container .color .color-codes .rgb div:nth-of-type(1):before {
+    content: "R";
+}
+
+.color-palettes .palette-container .code-container .color .color-codes .rgb div:nth-of-type(2):before {
+    content: "G";
+}
+
+.color-palettes .palette-container .code-container .color .color-codes .rgb div:nth-of-type(3):before {
+    content: "B";
+}
+
+.color-palettes .palette-container .code-container .color .color-codes .hsl div:nth-of-type(1):before {
+    content: "H";
+}
+
+.color-palettes .palette-container .code-container .color .color-codes .hsl div:nth-of-type(2):before {
+    content: "S";
+}
+
+.color-palettes .palette-container .code-container .color .color-codes .hsl div:nth-of-type(3):before {
+    content: "L";
+} */
+
+.color-palettes .palette-container .code-container .color .color-codes .hex {
+    align-items: center;
+    background: var(--gray);
+    border-radius: 50px;
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: 700;
+    justify-content: center;
+    width: 100%;
+}
