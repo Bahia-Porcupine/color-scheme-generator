@@ -70,11 +70,13 @@ main {
 .header details {
     background-color: var(--white);
     color: var(--black);
-    cursor: pointer;
     height: 2.4rem;
     margin-top: 24px;
     padding: .5rem 1rem;
     display: flex;
+}
+details {
+    cursor: pointer;
 }
 
 .header .details-open {
@@ -195,6 +197,6 @@ canvas {
     width: 2rem;
 }
 
-.hidden {
+/* .hidden {
     display: none;
-}
+} */

@@ -189,7 +189,6 @@ class Palette {
 }
 const createPalette = (title, parent, color, harmony, variations) => {
     let container = document.createElement('div');
-    container.classList.add('hidden');
     container.setAttribute('id', `palette-container-${harmony}`);
 
     let heading = document.createElement('h2');
@@ -288,3 +287,16 @@ input.addEventListener('change', () => {
     let rgb = parseRgb(input.value);
     genPalette(titles, modes, rgb, select.value);
 });
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     // var paletteContainerComplement = dom.$('palette-container-complement')[0];
+//     var paletteContainerComplement = dom.$('#palette-container-complement');
+//     var checkComplementary = dom.$('input[type=checkbox]#checkComplementary');
+//     checkComplementary.addEventListener('change', () => {
+//         if (checkComplementary.checked) {
+//             paletteContainerComplement.classList.add('display');
+//         } else {
+//             paletteContainerComplement.classList.remove('display');
+//         }
+//     })
+// });

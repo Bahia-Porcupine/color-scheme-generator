@@ -9,7 +9,7 @@
   <link href="assets/css/styles.css" rel="stylesheet">
   <script src="assets/js/scripts.js" defer type="module"></script>
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-  <script>
+  <!-- <script>
     'use strict';
     const showHideDiv = (check, palette) => {
       let el = document.getElementById(palette);
@@ -20,7 +20,7 @@
         el.classList.remove('hidden');
       }
     }
-  </script>
+  </script> -->
 </head>
 
 <body>
@@ -38,12 +38,12 @@
         <details>
           <summary>Color Models</summary>
           <div class="details-open">
-          <label for="checkComplementary"><input id="checkComplementary" type="checkbox" onchange="showHideDiv(this, 'palette-container-complement')" />Complementary</label>
-          <label for="checkTriadic"><input id="checkTriadic" type="checkbox" onchange="showHideDiv(this, 'palette-container-triad')" />Triadic</label>
-          <label for="checkTetradic"><input id="checkTetradic" type="checkbox" onchange="showHideDiv(this, 'palette-container-tetrad')" />Tetradic</label>
-          <label for="checkCompound"><input id="checkCompound" type="checkbox" onchange="showHideDiv(this, 'palette-container-compound')" />Compound</label>
-          <label for="checkMonochrome"><input id="checkMonochrome" type="checkbox" onchange="showHideDiv(this, 'palette-container-mono')" />Monochrome</label>
-          <label for="checkAnalogous"><input id="checkAnalogous" type="checkbox" onchange="showHideDiv(this, 'palette-container-analogous')" />Analogous</label>
+          <label for="checkComplementary"><input id="checkComplementary" type="checkbox" />Complementary</label>
+          <label for="checkTriadic"><input id="checkTriadic" type="checkbox" />Triadic</label>
+          <label for="checkTetradic"><input id="checkTetradic" type="checkbox" />Tetradic</label>
+          <label for="checkCompound"><input id="checkCompound" type="checkbox" />Compound</label>
+          <label for="checkMonochrome"><input id="checkMonochrome" type="checkbox" />Monochrome</label>
+          <label for="checkAnalogous"><input id="checkAnalogous" type="checkbox" />Analogous</label>
         </div>
         </details>
       </span>
