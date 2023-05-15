@@ -1,40 +1,69 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="assets/css/styles.css" rel="stylesheet">
-    <script src="assets/js/scripts.js" defer type="module"></script>
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="assets/css/styles.css" rel="stylesheet">
+  <script src="assets/js/scripts.js" defer type="module"></script>
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <script>
+    'use strict';
+    const showHideDiv = (check, palette) => {
+      let el = document.getElementById(palette);
+
+      el.classList.add('hidden');
+
+      if (check.checked == true) {
+        el.classList.remove('hidden');
+      }
+    }
+  </script>
 </head>
+
 <body>
   <main>
     <div class="header">
       <h1>Color Palette Generator</h1>
-      <p><a href="https://de.wikipedia.org/wiki/Farbschema" target="_blank">Farbschema</a></p>
+      <!-- <p><a href="https://de.wikipedia.org/wiki/Farbschema" target="_blank">Farbschema</a></p> -->
 
       <span>
         <label for="color-selector">Color</label>
-        <input type="color" id="color-selector" value="#0000ff" />
+        <input type="color" id="color-selector" value="#32B6CD" />
+      </span>
+
+      <span>
+        <details>
+          <summary>Color Models</summary>
+          <div class="details-open">
+          <label for="checkComplementary"><input id="checkComplementary" type="checkbox" onchange="showHideDiv(this, 'palette-container-complement')" />Complementary</label>
+          <label for="checkTriadic"><input id="checkTriadic" type="checkbox" onchange="showHideDiv(this, 'palette-container-triad')" />Triadic</label>
+          <label for="checkTetradic"><input id="checkTetradic" type="checkbox" onchange="showHideDiv(this, 'palette-container-tetrad')" />Tetradic</label>
+          <label for="checkCompound"><input id="checkCompound" type="checkbox" onchange="showHideDiv(this, 'palette-container-compound')" />Compound</label>
+          <label for="checkMonochrome"><input id="checkMonochrome" type="checkbox" onchange="showHideDiv(this, 'palette-container-mono')" />Monochrome</label>
+          <label for="checkAnalogous"><input id="checkAnalogous" type="checkbox" onchange="showHideDiv(this, 'palette-container-analogous')" />Analogous</label>
+        </div>
+        </details>
       </span>
       <span>
         <label for="variations">Variations</label>
         <select id="variations">
-          <option value="2">Minimal</option
-          ><option value="3">3</option
-          ><option value="4">4</option
-          ><option value="5">5</option
-          ><option value="6">6</option
-          ><option value="7">7</option
-          ><option value="8">8</option
-          ><option value="9">9</option
-          ><option value="10">10</option>
+          <option value="2">Minimal</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
         </select>
       </span>
     </div>
     <div class="color-palettes"></div>
   </main>
 </body>
+
 </html>

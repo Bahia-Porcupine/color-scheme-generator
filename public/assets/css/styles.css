@@ -1,27 +1,4 @@
-@font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 200;
-    src: url('../fonts/Inter-Light.ttf') format('truetype');
-}
-
-@font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/Inter-Regular.ttf') format('truetype');
-}
-
-@font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 800;
-    src: url('../fonts/Inter-Bold.ttf') format('truetype');
-}
-
+@import url('fonts.css');
 
 * {
     --white: #ffffff;
@@ -41,9 +18,18 @@ body {
     padding: 0;
 }
 
-.color-preview {
-    height: 100%;
-    width: 30px;
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.header,
+.color-palettes {
+    box-shadow: 0px 0px 64px rgba(0, 0, 0, .64);
+    max-width: 80vw;
+    /* padding: 2rem; */
+    width: 100%;
 }
 
 .header {
@@ -53,9 +39,9 @@ body {
     display: flex;
     flex-direction: column;
     font-weight: 200;
-    justify-content: space-around;
-    line-height: 1.5;
-    padding: 2rem 0;
+    justify-content: space-between;
+    padding: 2rem;
+    position: relative;
     text-align: center;
 }
 
@@ -81,11 +67,37 @@ body {
     width: fit-content;
 }
 
+.header details {
+    background-color: var(--white);
+    color: var(--black);
+    cursor: pointer;
+    height: 2.4rem;
+    margin-top: 24px;
+    padding: .5rem 1rem;
+    display: flex;
+}
+
+.header .details-open {
+    align-items: baseline;
+    background-color: var(--white);
+    box-shadow: 0 16px 16px rgba(0, 0, 0, .4);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    position: absolute;
+    transform: translate3d(-16px, 8px, 0);
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+    margin-left: -16px;
+}
+
 .header span #color-selector,
 .header span #variations {
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid var(--gray);
-    border-radius: .25rem;
+    background: var(--white);
+    border: none;
+    border-radius: 0;
     cursor: pointer;
     display: block;
     height: 2.4rem;
@@ -100,8 +112,31 @@ body {
     margin-top: 0;
 }
 
-.palette-title {
-    text-align: center;
+.color-preview {
+    align-self: normal;
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.code-container .color .color-codes .rgb:before,
+.code-container .color .color-codes .hsl:before,
+.code-container .color .color-codes .hex:before {
+    display: inline-block;
+    height: 2rem;
+    margin-right: 1rem;
+    width: fit-content;
+}
+
+.code-container .color .color-codes .rgb:before {
+    content: 'RGB';
+}
+
+.code-container .color .color-codes .hsl:before {
+    content: 'HSL';
+}
+
+.code-container .color .color-codes .hex:before {
+    content: 'HEX';
 }
 
 .color-palettes {
@@ -111,94 +146,55 @@ body {
     flex-wrap: wrap;
     flex: 0 1 auto;
     justify-content: center;
-    padding: 2rem 0;
+    padding-top: 2rem;
 }
 
-.color-palettes .palette-container {
-    margin-right: 1rem;
-    margin-top: 3rem;
+.color-palettes [class^='palette-container-'] {
+    flex: 0 1 auto;
+    margin-right: 2rem;
 }
 
-.color-palettes .palette-container .code-container .color {
-    display: flex;
-    height: 9rem;
+.color-palettes .palette-title {
+    text-align: center;
 }
 
-.color-palettes .palette-container .code-container .color .color-codes {
+canvas {
+    height: auto;
+    max-width: 320px;
+    width: 100%;
+}
+
+.color-palettes .code-container .color {
     align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 2rem;
+}
+
+.color-palettes .code-container .color .color-codes {
+    align-items: baseline;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-left: 1rem;
 }
 
-.color-palettes .palette-container .code-container .color .color-codes div {
+.color-palettes .code-container .color .color-codes div {
     z-index: 2;
 }
 
-.color-palettes .palette-container .code-container .color .color-codes div div {
+.color-palettes .code-container .color .color-codes div div {
     align-items: center;
     border-radius: 1rem;
     display: inline-flex;
     flex-direction: row;
     margin-right: 0.5rem;
-    padding: 0.3rem;
     position: relative;
-    text-align: center;
+    text-align: right;
     justify-content: center;
     width: 2rem;
 }
 
-.color-palettes .palette-container .code-container .color .color-codes .rgb,
-.color-palettes .palette-container .code-container .color .color-codes .hsl,
-.color-palettes .palette-container .code-container .color .color-codes .hex {
-    height: 2.4rem;
-}
-
-/* .color-palettes .palette-container .code-container .color .color-codes .rgb div:before,
-.color-palettes .palette-container .code-container .color .color-codes .hsl div:before {
-    color: var(--white);
-    font-size: 2.5rem;
-    font-weight: 700;
-    left: 50%;
-    opacity: 0.6;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-}
-
-.color-palettes .palette-container .code-container .color .color-codes .rgb div:nth-of-type(1):before {
-    content: "R";
-}
-
-.color-palettes .palette-container .code-container .color .color-codes .rgb div:nth-of-type(2):before {
-    content: "G";
-}
-
-.color-palettes .palette-container .code-container .color .color-codes .rgb div:nth-of-type(3):before {
-    content: "B";
-}
-
-.color-palettes .palette-container .code-container .color .color-codes .hsl div:nth-of-type(1):before {
-    content: "H";
-}
-
-.color-palettes .palette-container .code-container .color .color-codes .hsl div:nth-of-type(2):before {
-    content: "S";
-}
-
-.color-palettes .palette-container .code-container .color .color-codes .hsl div:nth-of-type(3):before {
-    content: "L";
-} */
-
-.color-palettes .palette-container .code-container .color .color-codes .hex {
-    align-items: center;
-    background: var(--gray);
-    border-radius: 50px;
-    display: flex;
-    font-size: 1.2rem;
-    font-weight: 700;
-    justify-content: center;
-    width: 100%;
+.hidden {
+    display: none;
 }
