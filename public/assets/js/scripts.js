@@ -22,7 +22,6 @@ class Palette {
         switch (harmony) {
             case 'analogous': {
                 this.colors = this.shades(this.analogous());
-
                 break;
             }
             case 'complement': {
@@ -54,11 +53,8 @@ class Palette {
     setup(target) {
         let canvas;
 
-        if (target.nodeType) {
-            canvas = target;
-        } else {
-            canvas = dom.$(target);
-        }
+        if (target.nodeType) canvas = target;
+        else canvas = dom.$(target);
 
         this.ctx = canvas.getContext('2d');
 
@@ -124,7 +120,6 @@ class Palette {
         colors.forEach(color => {
             let temp = hslToRgb(color[0], color[1], color[2]);
             let hsv = rgbToHsv(temp[0], temp[1], temp[2]);
-
             let h = hsv[0],
                 s = hsv[1],
                 v = hsv[2];
@@ -173,7 +168,7 @@ class Palette {
             this.ctx.lineTo(this.size / 2, this.size / 2);
             this.ctx.closePath();
 
-            this.ctx.lineWidth = this.size / 20;
+            this.ctx.lineWidth = this.size / 64;
             this.ctx.stroke();
             this.ctx.fill();
 
@@ -188,40 +183,82 @@ class Palette {
     }
 }
 const createPalette = (title, parent, color, harmony, variations) => {
-    let container = document.createElement('div');
-    container.setAttribute('id', `palette-container-${harmony}`);
+    let container = dom.create({
+        parent: parent,
+        attr: { id: `palette-container-${harmony}` }
+    })
 
-    let heading = document.createElement('h2');
-    heading.classList.add('palette-title');
-    heading.innerHTML = title;
-
+    let heading = dom.create({
+        content: title,
+        type: 'h2',
+        classes: ['palette-title'],
+        parent: container
+    })
     container.appendChild(heading);
 
     let paletteCanvas = document.createElement('canvas');
-    let canvasSize = 240;
+    let canvasSize = 480;
     let palette = new Palette(paletteCanvas, canvasSize, color, harmony, variations);
     palette.show();
 
-    let colorCodeContainer = document.createElement('div');
-    colorCodeContainer.classList.add('code-container');
+    let colorCodeContainer = dom.create({
+        type: 'details',
+        classes: ['code-container'],
+        parent: container
+    })
 
+    let summaryContainer = dom.create({
+        type: 'summary',
+        classes: ['code-container'],
+        parent: colorCodeContainer
+    })
+
+    let buttonContainer = dom.create({
+        content: 'Details',
+        classes: ['button'],
+        parent: summaryContainer
+    })
+
+    let modalContainer = dom.create({
+        classes: ['details-modal-overlay'],
+        parent: summaryContainer
+    })
+
+    let detailsModalContainer = dom.create({
+        classes: ['details-modal'],
+        parent: colorCodeContainer
+    })
+
+    let detailsModalCloseContainer = dom.create({
+        parent: detailsModalContainer,
+        classes: ['details-modal-close'],
+        content: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.0976311 12.6834 -0.0976311 12.2929 0.292893L7 5.58579L1.70711 0.292893C1.31658 -0.0976311 0.683417 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.0976311 12.6834 -0.0976311 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711Z" fill="black" />
+          </svg>`
+    })
+
+    let detailsModalContentContainer = dom.create({
+        classes: ['details-modal-content'],
+        parent: detailsModalContainer
+    })
 
     palette.colors.forEach(color => {
-        let colorContainer = document.createElement('div');
-        colorContainer.classList.add('color');
+        let colorContainer = dom.create({
+            classes: ['color'],
+            parent: detailsModalContentContainer
+        })
 
         let colorDisplay = document.createElement('div');
-
-        colorDisplay.style.background = `hsl(${color[0] * 360},${color[1] *
-            100}%,${color[2] * 100}%)`;
+        colorDisplay.style.background = `hsl(${color[0] * 360},${color[1] * 100}%,${color[2] * 100}%)`;
         colorDisplay.classList.add('color-preview');
 
-        let codes = document.createElement('div');
-        codes.classList.add('color-codes');
+        let codes = dom.create({
+            classes: ['color-codes'],
+            parent: colorContainer
+        })
+
         let rgb = hslToRgb(color[0], color[1], color[2]);
-        let hex = `#${decimalToHexString(Math.round(rgb[0]))}${decimalToHexString(
-            Math.round(rgb[1])
-        )}${decimalToHexString(Math.round(rgb[2]))}`;
+        let hex = `#${decimalToHexString(Math.round(rgb[0]))}${decimalToHexString(Math.round(rgb[1]))}${decimalToHexString(Math.round(rgb[2]))}`;
 
         let rgbValue = document.createElement('div');
         rgbValue.classList.add('rgb');
@@ -250,8 +287,6 @@ const createPalette = (title, parent, color, harmony, variations) => {
         codes.appendChild(hexValue);
         colorContainer.appendChild(colorDisplay);
         colorContainer.appendChild(codes);
-
-        colorCodeContainer.appendChild(colorContainer);
     });
 
     container.appendChild(paletteCanvas);
@@ -287,16 +322,3 @@ input.addEventListener('change', () => {
     let rgb = parseRgb(input.value);
     genPalette(titles, modes, rgb, select.value);
 });
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     // var paletteContainerComplement = dom.$('palette-container-complement')[0];
-//     var paletteContainerComplement = dom.$('#palette-container-complement');
-//     var checkComplementary = dom.$('input[type=checkbox]#checkComplementary');
-//     checkComplementary.addEventListener('change', () => {
-//         if (checkComplementary.checked) {
-//             paletteContainerComplement.classList.add('display');
-//         } else {
-//             paletteContainerComplement.classList.remove('display');
-//         }
-//     })
-// });
