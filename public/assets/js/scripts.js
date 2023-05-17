@@ -322,3 +322,12 @@ input.addEventListener('change', () => {
     let rgb = parseRgb(input.value);
     genPalette(titles, modes, rgb, select.value);
 });
+
+const detectScroll = () => {
+    let scrollArea = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrollPosition = document.documentElement.scrollTop;
+    let relativePosition = scrollPosition / scrollArea;
+    let positionTop = dom.$$('.details-modal');
+    positionTop.forEach(modal => modal.style.top = `calc(${relativePosition}% + ${scrollPosition}px + 50vh)`);
+ }
+ window.addEventListener('scroll', detectScroll);
