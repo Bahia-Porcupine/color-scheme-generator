@@ -7,7 +7,7 @@ server.use(express.static('public'));
 
 const init = error => {
     if (error) console.warn(error);
-    else console.log('Server is running... \n...and running... \n \n... \n \n... \n \n... \n \n...');
+    else console.log('Server is running... \n \n... \n \n... \n \n... \n \n... \n...and running...');
 }
 
 server.listen(80, init);
