@@ -24,7 +24,7 @@ main {
     flex-direction: column;
 }
 
-.header,
+header,
 .color-palettes,
 footer {
     box-shadow: 0px 0px 64px rgba(0, 0, 0, .64);
@@ -33,7 +33,7 @@ footer {
     width: 100%;
 }
 
-.header {
+header {
     align-items: center;
     background-color: var(--black);
     color: var(--white);
@@ -47,29 +47,29 @@ footer {
 }
 
 @media (min-width: 960px) {
-    .header {
+    header {
         flex-direction: row;
     }
 }
 
-.header h1 {
+header h1 {
     font-size: 2rem;
     padding-top: 1rem;
 }
 
-.header a {
+header a {
     color: var(--gray);
 }
 
-.header span {
+header span {
     align-items: flex-start;
     display: flex;
     flex-direction: column;
     width: fit-content;
 }
 
-.header span #color-selector,
-.header span #variations {
+header span #color-selector,
+header span #variations {
     background: var(--white);
     border: none;
     border-radius: 0;
@@ -81,7 +81,7 @@ footer {
     width: 10rem;
 }
 
-.header span #variations {
+header span #variations {
     font-size: 1rem;
     height: 2.4rem;
     margin-top: 0;
